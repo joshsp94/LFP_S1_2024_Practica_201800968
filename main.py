@@ -10,16 +10,17 @@ def chargeFile(title):
     #charge file XML
     file = open(rout,'rt',encoding='utf-8')
     # parameters
-    # 1. file rout
+    # 1. file rout + name file + extension 
+    #   example: /Users/josuedesarrollador/Documents/GitHub/LFP_S1_2024_Practica_201800968/prueba.petworld
     # 2. file management
-    # r --> read
-    # w --> write
-    # a --> append
-    # x --> create
+    #   r --> read
+    #   w --> write
+    #   a --> append
+    #   x --> create
     
-    # t --> text mode
-    # b --> bytes - for photografe or images
-    # 3. special characters 
+    #   t --> text mode
+    #   b --> bytes - for photografe or images
+    # 3. validate special characters
     
     readAllLines = file.readlines()
     print(readAllLines)
@@ -59,11 +60,6 @@ def principalMenu():
             print("==             ***  Fin del programa  ***             ==")
             print("========================================================\n")
             exit
-        # elif(op==3):
-        #     #request user option
-        #     lista=input("\n> Ingrese el tipo de lista que desea imprimir: ")
-        #     viewList(lista)
-        #     principalMenu()
         else:
             print("¡Opcion no valida!")
             principalMenu()
