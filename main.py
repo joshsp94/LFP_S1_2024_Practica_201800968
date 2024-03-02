@@ -2,6 +2,7 @@
 
 
 #--> FUNCTIONS
+
 #save file to charge
 def chargeFile(title):
     print("\n***  ",title,"  ***\n")
@@ -49,6 +50,7 @@ def principalMenu():
         op=int(op)
         # Options to principal menu
         if(op==1):            
+
             file_data=chargeFile("Cargar Archivo")
             
             for element in file_data:
