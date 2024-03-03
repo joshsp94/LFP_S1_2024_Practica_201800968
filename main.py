@@ -8,8 +8,7 @@ from animalClass import *
 
 #save file to charge
 def viewList():
-    print("\nLista de todos los productos")
-    animal.printListAnimals()
+    animal.globalList()
     
 def chargeFile(title):
     print("\n***  ",title,"  ***\n")
@@ -136,9 +135,33 @@ def principalMenu():
                         plus = float(time[0]) * 0.1
                         playWithAnimal(name, plus)
                     elif(x[0]=="Resumen_Mascota"):
-                        print("resumen")
+                        # Actual date
+                        today = date.today()
+                        now = datetime.now()
+                        dateNow = f"{today.day}/{today.month}/{today.year}, {now.hour}:{now.minute}"
+                        name= x[1].split("\n")
+                        #validate cat exist
+                        exist = searchAnimal(name[0])
+                        
+                        if(exist == None):
+                            print(f"El nombre {name[0]} no existe")
+                        else:
+                            print (f" Resumen para {name[0]} ".center(50, '-')) 
+                            print("\n")
+                            print(" ".rjust(5, ' ')+dateNow+" - "+exist[1])
+                            print (f"     Energia: {exist[2]}") 
+                            print (f"     Tipo: {exist[3]}") 
+                            print("\n")
+                            print("-".rjust(50, '-'))
                     elif(x[0]=="Resumen_Global"):
-                        print("resumen")
+                        today = date.today()
+                        now = datetime.now()
+                        dateNow = f"{today.day}/{today.month}/{today.year}, {now.hour}:{now.minute}"
+                        print (f"{dateNow} "+"-".rjust(24, '-')+f" Resumen Global "+"-".ljust(24, '-')) 
+                        print("\n")
+                        viewList()
+                        print("\n")
+                        print("-".rjust(50, '-'))
                     else:
                         print("**   opcion invalida   **")
             except:

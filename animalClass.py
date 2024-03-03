@@ -60,12 +60,24 @@ class animalList:
             actual=actual.next
         return actual 
 
+    def globalList(self):
+        actual = self.inicio
+        cont = 1
+        while actual!=None:
+            print(f"\n{cont}) [{actual.dataGato[0]}] - {actual.dataGato[1]}")
+            print(f"     Energia: {actual.dataGato[2]}")
+            print(f"     Typo: {actual.dataGato[3]}")
+            # print(actual.next)
+            # print("__________________________________________\n")
+            cont = cont + 1
+            actual=actual.next
+
     def printListAnimals(self):
         actual = self.inicio
         cont = 1
         while actual!=None:
             print(f"{cont}) {actual.dataGato}\n")
             # print(actual.next)
-            print("__________________________________________\n")
+            # print("__________________________________________\n")
             cont = cont + 1
             actual=actual.next
