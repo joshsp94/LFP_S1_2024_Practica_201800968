@@ -23,6 +23,20 @@ class animalList:
             self.final=aux
 
     #function to validate client exist
+    def feed(self, name, plus):
+        actual = self.inicio
+        cont = 1
+        while actual!=None:
+            if(actual.dataGato[1]==name):
+                if(float(actual.dataGato[2])>0):
+                    actual.dataGato[2] = float(actual.dataGato[2])+plus    
+                # print(f"\n**    cliente {actual.dataGato[0]} encontrado.   **")
+                
+            cont = cont + 1
+            actual=actual.next
+        return actual 
+
+    #function to validate client exist
     def valAnimal(self, name):
         actual = self.inicio
         cont = 1

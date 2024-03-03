@@ -37,14 +37,29 @@ def chargeFile(title):
 def createAnimal(name):
     #Actual date
     today = date.today()
-    dateNow = f"{today.day} / {today.month} / {today.year}"
+    now = datetime.now()
+    print(now)
+    dateNow = f"{today.day}/{today.month}/{today.year}, {now.hour}:{now.minute}"
     #created a new client
     animal.addAnimal([dateNow, name, 100.00, "gato"])
-    print(f"***  El gato {name} se agrego correctamente   ***")
+    print(f"***  [{dateNow}] El gato {name} se agrego correctamente   ***")
 
-def feedAnimal(name):
-    searchAnimal = animal.valAnimal(name)
-    return searchAnimal
+def feedAnimal(name, plus):
+    #Actual date
+    today = date.today()
+    now = datetime.now()
+    dateNow = f"{today.day}/{today.month}/{today.year}, {now.hour}:{now.minute}"
+    search = searchAnimal(name)
+    vida = float(search[2])
+
+    if(search==None):
+        print(f"***  El gato {name} no existe   ***")
+    else:
+        if(vida>0):
+            animal.feed(name, plus)
+            print(f"***  [{dateNow}] {name}, Gracias. Ahora mi energia es {vida+plus}   ***")
+        else:
+            print(f"***  [{dateNow}] {name}, Muy tarde. Ya me morí  ***")
 
 def searchAnimal(name):
     searchAnimal = animal.valAnimal(name)
@@ -82,13 +97,23 @@ def principalMenu():
                     # filter action to realise
                     if(x[0]=="Crear_Gato"):
                         name= x[1].split("\n")
+                        #validate cat exist
                         exist = searchAnimal(name[0])
                         if(exist == None):
                             createAnimal(name[0])
                         else:
                             print(f"El nombre {name[0]} ya existe y no puede ser registrado dos veces")
                     elif(x[0]=="Dar_de_Comer"):
-                        print("alimentar")
+                        data = x[1].split(",")
+                        name = data[0]
+                        peso = data[1].split('\n')
+
+                        exist = searchAnimal(name)
+                        if(exist == None):
+                            print(f"El nombre {name} no existe")
+                        else:
+                            plus = 12 + float(peso[0])
+                            feedAnimal(name, plus)
                     elif(x[0]=="Jugar"):
                         print("jugar")
                     elif(x[0]=="Resumen_Mascota"):

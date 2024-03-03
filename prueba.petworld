@@ -5,12 +5,6 @@ Crear_Gato:Toby
 Crear_Gato:Luna
 Crear_Gato:Félix
 Dar_de_Comer:Michi,80
-Jugar:Michi,20
-Jugar:Michi,20
 Crear_Gato:Toby
-Jugar:Luna,15
-Dar_de_Comer:Félix,40
-Jugar:Félix,30
+Dar_de_Comer:Moon,40
 Dar_de_Comer:Félix,20
-Jugar:Félix,25
-Jugar:Félix,10
