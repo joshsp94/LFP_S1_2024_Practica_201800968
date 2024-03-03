@@ -1,9 +1,16 @@
-#import all classes
+from datetime import date
+from datetime import datetime
 
+#import all my classes
+from animalClass import *
 
 #--> FUNCTIONS
 
 #save file to charge
+def viewList():
+    print("\nLista de todos los productos")
+    animal.printListAnimals()
+    
 def chargeFile(title):
     print("\n***  ",title,"  ***\n")
     #save rout at var
@@ -24,9 +31,25 @@ def chargeFile(title):
     # 3. validate special characters
     
     readAllLines = file.readlines()
-    print(readAllLines)
+
     return readAllLines
-    
+
+def createAnimal(name):
+    #Actual date
+    today = date.today()
+    dateNow = f"{today.day} / {today.month} / {today.year}"
+    #created a new client
+    animal.addAnimal([dateNow, name, 100.00, "gato"])
+    print(f"***  El gato {name} se agrego correctamente   ***")
+
+def feedAnimal(name):
+    searchAnimal = animal.valAnimal(name)
+    return searchAnimal
+
+def searchAnimal(name):
+    searchAnimal = animal.valAnimal(name)
+    return searchAnimal
+
 #--> VIEW USER MENUS
 #create principal menu
 def principalMenu():
@@ -50,18 +73,41 @@ def principalMenu():
         op=int(op)
         # Options to principal menu
         if(op==1):            
-
-            file_data=chargeFile("Cargar Archivo")
-            
-            for element in file_data:
-                print(element)
-            
+            try:
+                file_data=chargeFile("Cargar Archivo")
+                
+                for element in file_data:
+                    x = element.split(":")
+                    
+                    # filter action to realise
+                    if(x[0]=="Crear_Gato"):
+                        name= x[1].split("\n")
+                        exist = searchAnimal(name[0])
+                        if(exist == None):
+                            createAnimal(name[0])
+                        else:
+                            print(f"El nombre {name[0]} ya existe y no puede ser registrado dos veces")
+                    elif(x[0]=="Dar_de_Comer"):
+                        print("alimentar")
+                    elif(x[0]=="Jugar"):
+                        print("jugar")
+                    elif(x[0]=="Resumen_Mascota"):
+                        print("resumen")
+                    elif(x[0]=="Resumen_Global"):
+                        print("resumen")
+                    else:
+                        print("**   opcion invalida   **")
+            except:
+                print("**   Error, algo salio mal   **")
             principalMenu()
         elif(op==2):
             print("\n========================================================")
             print("==             ***  Fin del programa  ***             ==")
             print("========================================================\n")
             exit
+        elif(op==3):
+            viewList()
+            principalMenu()
         else:
             print("¡Opcion no valida!")
             principalMenu()
@@ -70,5 +116,6 @@ def principalMenu():
         principalMenu()
         
 #VARS
+animal=animalList()
 
 principalMenu()
