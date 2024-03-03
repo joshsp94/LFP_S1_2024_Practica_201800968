@@ -22,7 +22,7 @@ class animalList:
             self.final.next=aux
             self.final=aux
 
-    #function to validate client exist
+     #function to feed a cat
     def feed(self, name, plus):
         actual = self.inicio
         cont = 1
@@ -30,13 +30,25 @@ class animalList:
             if(actual.dataGato[1]==name):
                 if(float(actual.dataGato[2])>0):
                     actual.dataGato[2] = float(actual.dataGato[2])+plus    
-                # print(f"\n**    cliente {actual.dataGato[0]} encontrado.   **")
-                
+                    return actual.dataGato
+            cont = cont + 1
+            actual=actual.next
+        return actual 
+    
+    #function to play with a cat
+    def play(self, name, plus):
+        actual = self.inicio
+        cont = 1
+        while actual!=None:
+            if(actual.dataGato[1]==name):
+                if(float(actual.dataGato[2])>0):
+                    actual.dataGato[2] = float(actual.dataGato[2])-plus    
+                    return actual.dataGato
             cont = cont + 1
             actual=actual.next
         return actual 
 
-    #function to validate client exist
+    #function to validate cat exist
     def valAnimal(self, name):
         actual = self.inicio
         cont = 1
