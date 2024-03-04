@@ -33,6 +33,16 @@ def chargeFile(title):
 
     return readAllLines
 
+def writeFileLines(parraf):
+    doc = open("./resumen.petworld_result", "a", encoding='utf-8')
+    doc.writelines(parraf)
+    doc.close()
+
+def writeFile(text):
+    doc = open("./resumen.petworld_result", "a", encoding='utf-8')
+    doc.write(f"{text}\n")
+    doc.close()
+
 def createAnimal(name):
     #Actual date
     today = date.today()
@@ -42,6 +52,7 @@ def createAnimal(name):
     #created a new client
     animal.addAnimal([dateNow, name, 100.00, "gato"])
     print(f"***  [{dateNow}] El gato {name} se agrego correctamente   ***")
+    writeFile(f"***  [{dateNow}] El gato {name} se agrego correctamente   ***")
 
 def feedAnimal(name, plus):
     #Actual date
@@ -57,8 +68,10 @@ def feedAnimal(name, plus):
         if(vida>0):
             updatate = animal.feed(name, plus)
             print(f"***  [{dateNow}] {name}, Gracias. Ahora mi energia es {updatate[2]}   ***")
+            writeFile(f"***  [{dateNow}] {name}, Gracias. Ahora mi energia es {updatate[2]}   ***")
         else:
             print(f"***  [{dateNow}] {name}, Muy tarde. Ya me morí  ***")
+            writeFile(f"***  [{dateNow}] {name}, Muy tarde. Ya me morí  ***")
 
 def playWithAnimal(name, plus):
     # Actual date
@@ -74,8 +87,10 @@ def playWithAnimal(name, plus):
         if(vida>0):
             updatate = animal.play(name, plus)
             print(f"***  [{dateNow}] {name},Gracias por jugar conmigo. Ahora mi energia es {updatate[2]}   ***")
+            writeFile(f"***  [{dateNow}] {name},Gracias por jugar conmigo. Ahora mi energia es {updatate[2]}   ***")
         else:
             print(f"***  [{dateNow}] {name}, Muy tarde. Ya me morí  ***")
+            writeFile(f"***  [{dateNow}] {name}, Muy tarde. Ya me morí  ***")
 
 def searchAnimal(name):
     searchAnimal = animal.valAnimal(name)
@@ -153,11 +168,23 @@ def principalMenu():
                             print (f"     Tipo: {exist[3]}") 
                             print("\n")
                             print("-".rjust(50, '-'))
+                            
+                            parraf=[
+                                f" Resumen para {name[0]} ".center(50, '-'),
+                                " ".rjust(5, ' ')+dateNow+" - "+exist[1],
+                                f"     Energia: {exist[2]}",
+                                f"     Tipo: {exist[3]}",
+                                "-".rjust(50, '-')
+                            ]
+                            # Agrego el salto de linea
+                            parraf = list(map(lambda line: line + '\n', parraf))
+                            writeFileLines(parraf)   
                     elif(x[0]=="Resumen_Global"):
                         today = date.today()
                         now = datetime.now()
                         dateNow = f"{today.day}/{today.month}/{today.year}, {now.hour}:{now.minute}"
                         print (f"{dateNow} "+"-".rjust(24, '-')+f" Resumen Global "+"-".ljust(24, '-')) 
+                        writeFile(f"{dateNow} "+"-".rjust(24, '-')+f" Resumen Global "+"-".ljust(24, '-'))
                         print("\n")
                         viewList()
                         print("\n")

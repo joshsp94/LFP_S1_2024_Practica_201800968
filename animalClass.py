@@ -22,7 +22,7 @@ class animalList:
             self.final.next=aux
             self.final=aux
 
-     #function to feed a cat
+    #function to feed a cat
     def feed(self, name, plus):
         actual = self.inicio
         cont = 1
@@ -61,12 +61,23 @@ class animalList:
         return actual 
 
     def globalList(self):
+        lista=[]
         actual = self.inicio
         cont = 1
         while actual!=None:
-            print(f"\n{cont}) [{actual.dataGato[0]}] - {actual.dataGato[1]}")
+            print(f"\n{cont}. [{actual.dataGato[0]}] - {actual.dataGato[1]}")
             print(f"     Energia: {actual.dataGato[2]}")
             print(f"     Typo: {actual.dataGato[3]}")
+            
+            parraf=[
+                f"{cont}. [{actual.dataGato[0]}] - {actual.dataGato[1]}",
+                f"     Energia: {actual.dataGato[2]}",
+                f"     Typo: {actual.dataGato[3]}"
+            ]
+            parraf = list(map(lambda line: line + '\n', parraf))
+            doc = open("./resumen.petworld_result", "a", encoding='utf-8')
+            doc.writelines(parraf)
+            doc.close()
             # print(actual.next)
             # print("__________________________________________\n")
             cont = cont + 1
