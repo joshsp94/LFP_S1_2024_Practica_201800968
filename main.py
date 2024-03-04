@@ -1,3 +1,5 @@
+
+from os import system
 from datetime import date
 from datetime import datetime
 
@@ -97,6 +99,26 @@ def searchAnimal(name):
     return searchAnimal
 
 #--> VIEW USER MENUS
+#view student data
+def studentData():
+    print("\n========================================================")
+    print("==         Practic 1 -  Datos del Estudiante          ==")
+    print("========================================================")
+    print("==                                                    ==")
+    print("==  Lenguajes Foramales y de Programación             ==")
+    print("==  Sección: A+                                       ==")
+    print("==  Nombre:                                           ==")
+    print("==       Josué Salvador Sánchez Portomatin            ==")
+    print("==  Carné:                                            ==")
+    print("==       201800968                                    ==")
+    print("==                                                    ==")
+    print("==========  Ingeniria en Ciencisa y Sistemas  ==========")
+
+    #request user option
+    input("\n> Presiona enter para continuar: ")
+    system('clear')
+    principalMenu()
+
 #create principal menu
 def principalMenu():
     print("\n===========================================")
@@ -104,7 +126,8 @@ def principalMenu():
     print("===========================================")
     print("==                                       ==")
     print("==  1. PetManager                        ==")
-    print("==  2. Salir                             ==")
+    print("==  2. Volver                            ==")
+    print("==  3. Cerrar Programa                   ==")
     print("==                                       ==")
     print("===========================================")
     
@@ -118,7 +141,8 @@ def principalMenu():
         #convert op to int var
         op=int(op)
         # Options to principal menu
-        if(op==1):            
+        if(op==1):   
+            system('clear')         
             try:
                 file_data=chargeFile("Cargar Archivo")
                 
@@ -178,7 +202,7 @@ def principalMenu():
                             ]
                             # Agrego el salto de linea
                             parraf = list(map(lambda line: line + '\n', parraf))
-                            writeFileLines(parraf)   
+                            writeFileLines(parraf)
                     elif(x[0]=="Resumen_Global"):
                         today = date.today()
                         now = datetime.now()
@@ -189,17 +213,25 @@ def principalMenu():
                         viewList()
                         print("\n")
                         print("-".rjust(50, '-'))
+                        writeFile("-".rjust(70, '-'))
+                        animal.draw()
                     else:
                         print("**   opcion invalida   **")
             except:
                 print("**   Error, algo salio mal   **")
+            # system('clear')
+            print("**   El archivo se cargo correctamente   **")
             principalMenu()
         elif(op==2):
+            system('clear')
+            studentData()
+        elif(op==3):
+            system('clear')
             print("\n========================================================")
             print("==             ***  Fin del programa  ***             ==")
             print("========================================================\n")
             exit
-        elif(op==3):
+        elif(op==4):
             viewList()
             principalMenu()
         else:
@@ -212,4 +244,4 @@ def principalMenu():
 #VARS
 animal=animalList()
 
-principalMenu()
+studentData()
